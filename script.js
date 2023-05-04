@@ -1,5 +1,5 @@
 function getWeather() {
-  const apiKey = "YOUR_API_KEY";
+  const apiKey = "59d8de3e36432775b2494c3629dfb691";
   const city = "London";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
