@@ -1,26 +1,25 @@
-document.getElementById('weatherButton').addEventListener('click', getWeather);
-
+// Функція, яка виконується при натисканні кнопки
 function getWeather() {
-  var cityName = 'Лондон';
-  var apiKey = '59d8de3e36432775b2494c3629dfb691'; 
+  // URL запиту до API OpenWeatherMap
+  const apiKey = "YOUR_API_KEY";
+  const city = "London";
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
-  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey;
-
+  // Виконуємо запит до API
   fetch(apiUrl)
-    .then(function(response) {
-      return response.json();
+    .then(response => response.json())
+    .then(data => {
+      // Витягуємо температуру з відповіді
+      const temperature = data.main.temp - 273.15;
+      // Витягуємо назву міста з відповіді
+      const city = data.name;
+      // Відображаємо дані на веб-сторінці
+      document.getElementById("weatherData").innerText = `Температура в місті ${city} становить ${temperature.toFixed(2)} градусів Цельсія`;
     })
-    .then(function(data) {
-      var temperature = data.main.temp;
-      var humidity = data.main.humidity;
-      var windSpeed = data.wind.speed;
-
-      var weatherDataDiv = document.getElementById('weatherData');
-      weatherDataDiv.innerHTML = 'Температура: ' + temperature + 'K<br>' +
-                                 'Вологість: ' + humidity + '%<br>' +
-                                 'Швидкість вітру: ' + windSpeed + ' м/с';
-    })
-    .catch(function(error) {
-      console.log('Виникла помилка при отриманні даних про погоду:', error);
+    .catch(error => {
+      console.log("Сталася помилка під час отримання даних про погоду:", error);
     });
 }
+
+// Прив'язуємо функцію до кнопки
+document.getElementById("weatherButton").addEventListener("click", getWeather);
