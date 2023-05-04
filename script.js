@@ -2,7 +2,7 @@ document.getElementById('weatherButton').addEventListener('click', getWeather);
 
 function getWeather() {
   var cityName = 'Лондон';
-  var apiKey = 'cec9cd8db9ad7af9992cbf7623bcf472'; 
+  var apiKey = '59d8de3e36432775b2494c3629dfb691'; 
 
   var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey;
 
